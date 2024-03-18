@@ -1,32 +1,33 @@
 #include<stdio.h>
+
 int main()
 { 
-    int n = 5;
-    int c=1;
-    int lc=1;
-    for(int i=1;i<=n;i++)
+    int arr[6];
+    for(int i=0;i<6;i++)
     {
-        for(int j=n-i;j>0;j--){
-            printf(" ");
-        }
-        for(int j=1;j<=lc;j++)
+        scanf("%d",&arr[i]);
+    }
+    int visited[sizeof(arr)/sizeof(int)];
+    int count = 0;
+    for(int i=0;i<sizeof(arr)/sizeof(int);i++)
+    {
+        visited[i] = 0;
+    }
+    for(int i=0;i<sizeof(arr)/sizeof(int);i++)
+    {
+        for(int j=i+1;j<sizeof(arr)/sizeof(int);j++)
         {
-            if(c==1)
+            if(arr[i] == arr[j] && visited[j] == 0)
             {
-                printf("*");
+                visited[j] = 1;
+                arr[j] = count;
+                count--;
             }
-            else
-            {
-                printf(" ");
-            }
-            c=1-c;
         }
-        for(int j=n-i;j>0;j--)
-        {
-            printf(" ");
-        }
-        printf("\n");
-        lc+=2;
-        c=1;
+        count = 0;
+    }
+    for(int i=0;i<sizeof(arr)/sizeof(int);i++)
+    {
+        printf("%d ",arr[i]);
     }
 }
